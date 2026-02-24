@@ -1,0 +1,14 @@
+<h2>Új bejelentés</h2>
+<form>
+	<div style="height: 400px; margin-bottom: 1em;">
+		<div #map style="height: 100%; width: 100%;"></div>
+	</div>
+	<label>Latitude:
+		<input type="text" [value]="lat() ?? ''" readonly>
+	</label>
+	<label>Longitude:
+		<input type="text" [value]="lng() ?? ''" readonly>
+	</label>
+	<!-- További mezők ide -->
+	<button type="submit">Mentés</button>
+</form>
