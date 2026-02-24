@@ -12,15 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('report_images', function (Blueprint $table) {
-              $table->id();
-              $table->unsignedBigInteger('report_id');
-              $table->string('image_path');
-              $table->timestamps();
-              $table->softDeletes();
-              $table->foreign('report_id')
-                 ->references('id')
-                 ->on('reports')
-                 ->onDelete('cascade');
+            $table->engine = 'InnoDB';
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_unicode_ci';
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('report_id');
+            $table->string('image_path');
+            $table->timestamps();
+            $table->softDeletes();
+            $table->foreign('report_id')
+                ->references('id')
+                ->on('reports')
+                ->onDelete('cascade');
         });
     }
 
