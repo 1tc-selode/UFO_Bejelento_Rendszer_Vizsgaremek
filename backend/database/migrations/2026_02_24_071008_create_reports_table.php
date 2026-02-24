@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('reports', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('category_id')->constrained('categories');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('category_id');
             $table->string('title');
             $table->text('description');
             $table->decimal('latitude', 10, 7);
@@ -24,6 +24,9 @@ return new class extends Migration
             $table->string('status')->default('pending');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 
