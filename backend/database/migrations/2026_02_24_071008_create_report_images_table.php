@@ -12,11 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('report_images', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('report_id')->constrained('reports')->onDelete('cascade');
-            $table->string('image_path');
-            $table->timestamps();
-            $table->softDeletes();
+              $table->id();
+              $table->unsignedBigInteger('report_id');
+              $table->string('image_path');
+              $table->timestamps();
+              $table->softDeletes();
+              $table->foreign('report_id')
+                 ->references('id')
+                 ->on('reports')
+                 ->onDelete('cascade');
         });
     }
 
