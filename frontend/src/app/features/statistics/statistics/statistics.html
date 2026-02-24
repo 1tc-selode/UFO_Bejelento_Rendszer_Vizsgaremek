@@ -1,1 +1,18 @@
-<p>statistics works!</p>
+<div class="statistics">
+	<h2>Statisztikák</h2>
+	<div class="stats">
+		<div>Összes bejelentés: {{ totalReports }}</div>
+		<div>Leghitelesebb bejelentés: {{ mostCredible?.title }} ({{ mostCredible?.credibility }})</div>
+		<div>Legkevésbé hiteles bejelentés: {{ leastCredible?.title }} ({{ leastCredible?.credibility }})</div>
+	</div>
+
+	<div class="charts">
+		<h3>Kategóriák szerinti diagram</h3>
+		<!-- Pie chart placeholder (ngx-charts vagy Chart.js) -->
+		<canvas id="categoryPieChart"></canvas>
+
+		<h3>Idő szerinti eloszlás</h3>
+		<!-- Line chart placeholder (ngx-charts vagy Chart.js) -->
+		<canvas id="timeLineChart"></canvas>
+	</div>
+</div>

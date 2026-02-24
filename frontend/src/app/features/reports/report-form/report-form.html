@@ -1,1 +1,42 @@
-<p>report-form works!</p>
+<form (ngSubmit)="save()">
+	<div>
+		<label>Cím*</label>
+		<input type="text" [(ngModel)]="title" name="title" required />
+		<span class="error" *ngIf="errors.title">{{ errors.title }}</span>
+	</div>
+	<div>
+		<label>Kategória*</label>
+		<select [(ngModel)]="category" name="category" required>
+			<option value="">Válassz...</option>
+			<option *ngFor="let cat of categories" [value]="cat.value">{{ cat.label }}</option>
+		</select>
+		<span class="error" *ngIf="errors.category">{{ errors.category }}</span>
+	</div>
+	<div>
+		<label>Leírás*</label>
+		<textarea [(ngModel)]="description" name="description" minlength="20" required></textarea>
+		<span class="error" *ngIf="errors.description">{{ errors.description }}</span>
+	</div>
+	<div>
+		<label>Dátum</label>
+		<input type="date" [(ngModel)]="date" name="date" />
+	</div>
+	<div>
+		<label>Tanúk száma</label>
+		<input type="number" [(ngModel)]="witnessCount" name="witnessCount" min="0" />
+	</div>
+	<div>
+		<label>Lokáció*</label>
+		<div id="map" style="height: 300px;"></div>
+		<span class="error" *ngIf="errors.location">{{ errors.location }}</span>
+		<div>Latitude: {{ latitude }} Longitude: {{ longitude }}</div>
+	</div>
+	<div>
+		<label>Képek</label>
+		<input type="file" (change)="onImageChange($event)" multiple />
+	</div>
+	<div class="form-actions">
+		<button type="submit">Mentés</button>
+		<button type="button" (click)="cancel()">Mégse</button>
+	</div>
+</form>

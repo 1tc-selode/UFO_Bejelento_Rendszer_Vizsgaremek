@@ -19,7 +19,7 @@ export const routes: Routes = [
 	},
 	{
 		path: 'profile',
-		loadComponent: () => import('./features/profile/profile').then(m => m.Profile)
+		loadComponent: () => import('./features/profile/profile').then(m => m.ProfileComponent)
 	},
 	{
 		path: 'statistics',
