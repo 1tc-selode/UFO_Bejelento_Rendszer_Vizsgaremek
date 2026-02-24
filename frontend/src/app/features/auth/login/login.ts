@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent {
   password: string = '';
   error: string = '';
 
-  constructor(private auth: AuthService) {}
+  constructor(private auth: AuthService, private router: Router) {}
 
   login() {
     this.error = '';
@@ -22,6 +23,7 @@ export class LoginComponent {
       next: (res: any) => {
         if (res.token) {
           this.auth.setToken(res.token);
+          this.router.navigate(['/']);
         }
       },
       error: () => {
