@@ -37,16 +37,6 @@ class AdminController extends Controller
         $users = \App\Models\User::all();
         return response()->json($users);
     }
-
-    // Felhasználó tiltása
-    public function banUser($id)
-    {
-        $user = \App\Models\User::findOrFail($id);
-        $user->role = 'banned';
-        $user->save();
-        return response()->json(['message' => 'User banned successfully']);
-    }
-
     // Admin statisztikák
     public function getStatistics()
     {
