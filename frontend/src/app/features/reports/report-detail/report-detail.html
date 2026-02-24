@@ -1,0 +1,39 @@
+<div class="report-detail">
+	<div class="header">
+		<h2>{{ report.title }}</h2>
+		<span class="category">{{ report.category }}</span>
+		<span class="date">{{ report.date }}</span>
+		<span class="uploader">Feltöltő: {{ report.uploader }}</span>
+		<span class="witness">Tanúk: {{ report.witnessCount }}</span>
+		<span class="credibility">Hitelesség: {{ report.credibility }}</span>
+	</div>
+
+	<div class="description-block">
+		<h4>Leírás</h4>
+		<div class="description" [innerHTML]="report.description"></div>
+	</div>
+
+	<div class="map-block">
+		<h4>Térkép</h4>
+		<!-- Leaflet map placeholder -->
+		<div id="map" style="height: 300px;"></div>
+	</div>
+
+	<div class="gallery-block">
+		<h4>Képgaléria</h4>
+		<div class="gallery-grid">
+			<img *ngFor="let img of report.images" [src]="img" (click)="openModal(img)" class="gallery-img" />
+		</div>
+		<div class="modal" *ngIf="modalImg">
+			<span class="close" (click)="closeModal()">&times;</span>
+			<img [src]="modalImg" class="modal-img" />
+		</div>
+	</div>
+
+	<div class="actions">
+		<button (click)="upvote()" [class.active]="userVoted === 'up'">⬆️</button>
+		<span>{{ report.credibility }}</span>
+		<button (click)="downvote()" [class.active]="userVoted === 'down'">⬇️</button>
+		<button *ngIf="isAdmin" (click)="deleteReport()">Törlés</button>
+	</div>
+</div>

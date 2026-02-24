@@ -1,0 +1,14 @@
+<form (ngSubmit)="login()">
+	<div>
+		<label>Email</label>
+		<input type="email" [(ngModel)]="email" name="email" required />
+	</div>
+	<div>
+		<label>Jelszó</label>
+		<input type="password" [(ngModel)]="password" name="password" required />
+	</div>
+	<div class="form-actions">
+		<button type="submit">Bejelentkezés</button>
+	</div>
+	<span class="error" *ngIf="error">{{ error }}</span>
+</form>

@@ -1,0 +1,21 @@
+<div class="profile">
+	<h2>Profil</h2>
+	<div class="user-info">
+		<div>Név: {{ user.name }}</div>
+		<div>Email: {{ user.email }}</div>
+		<div>Szerepkör: {{ user.role }}</div>
+		<div>Regisztráció dátuma: {{ user.registeredAt }}</div>
+	</div>
+
+	<h3>Saját bejelentések</h3>
+	<div class="my-reports">
+		<div *ngFor="let report of myReports">
+			<div class="report-card">
+				<h4>{{ report.title }}</h4>
+				<span>{{ report.category }}</span>
+				<span>{{ report.date }}</span>
+				<span>Hitelesség: {{ report.credibility }}</span>
+			</div>
+		</div>
+	</div>
+</div>
