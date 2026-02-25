@@ -6,29 +6,21 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class IsAdmin
+class Isadmin
 {
     /**
      * Handle an incoming request.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Check if user is authenticated
-        if (!$request->user()) {
-            return response()->json([
-                'message' => 'Unauthorized. Please login first.'
-            ], 401);
+        // Feltételezzük, hogy a felhasználónak van 'role' mezője, és az 'admin' ha admin
+        if (auth()->check() && auth()->user()->role === 'admin') {
+            return $next($request);
         }
-
-        // Check if user is admin
-        if (!$request->user()->is_admin) {
-            return response()->json([
-                'message' => 'Forbidden. Admin access required.'
-            ], 403);
-        }
-
-        return $next($request);
+        abort(403, 'Nincs jogosultságod az erőforráshoz.');
     }
 }
