@@ -58,4 +58,4 @@ Route::middleware(['auth:sanctum', 'isadmin'])->prefix('admin')->group(function 
 // Statisztikák
 Route::get('/statistics', [AdminController::class, 'getStatistics']);
 
-// További API route-ok ide jöhetnek...
+
