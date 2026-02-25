@@ -1,1 +1,41 @@
-<p>admin-categories works!</p>
+<div class="admin-categories-container">
+	<h2>Kategóriák</h2>
+	<div *ngIf="loading" class="loading">Betöltés...</div>
+	<div *ngIf="error" class="error">{{ error }}</div>
+	<table *ngIf="!loading && categories.length" class="categories-table">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Név</th>
+				<th>Leírás</th>
+				<th>Műveletek</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let category of categories">
+				<td>{{ category.id }}</td>
+				<td *ngIf="editId !== category.id">{{ category.name }}</td>
+				<td *ngIf="editId === category.id"><input [(ngModel)]="editCategory.name" /></td>
+				<td *ngIf="editId !== category.id">{{ category.description }}</td>
+				<td *ngIf="editId === category.id"><input [(ngModel)]="editCategory.description" /></td>
+				<td>
+					<ng-container *ngIf="editId !== category.id; else editBtns">
+						<button class="btn btn-primary btn-sm" (click)="startEdit(category)">Módosítás</button>
+						<button class="btn btn-danger btn-sm" (click)="delete(category)">Törlés</button>
+					</ng-container>
+					<ng-template #editBtns>
+						<button class="btn btn-success btn-sm" (click)="saveEdit(category)">Mentés</button>
+						<button class="btn btn-secondary btn-sm" (click)="cancelEdit()">Mégse</button>
+					</ng-template>
+				</td>
+			</tr>
+			<tr>
+				<td>Új</td>
+				<td><input [(ngModel)]="newCategory.name" placeholder="Név" /></td>
+				<td><input [(ngModel)]="newCategory.description" placeholder="Leírás" /></td>
+				<td><button class="btn btn-success btn-sm" (click)="create()">Létrehozás</button></td>
+			</tr>
+		</tbody>
+	</table>
+	<div *ngIf="!loading && !categories.length" class="no-categories">Nincs kategória.</div>
+</div>

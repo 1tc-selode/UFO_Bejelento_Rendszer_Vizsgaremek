@@ -1,1 +1,14 @@
-<p>admin-dashboard works!</p>
+<div class="admin-dashboard-container">
+	<h2>Rendszer összesítő adatok</h2>
+	<div *ngIf="loading" class="loading">Betöltés...</div>
+	<div *ngIf="error" class="error">{{ error }}</div>
+	<div *ngIf="!loading && stats">
+		<ul class="stats-list">
+			<li><strong>Felhasználók száma:</strong> {{ stats.users }}</li>
+			<li><strong>Bejelentések száma:</strong> {{ stats.reports }}</li>
+			<li><strong>Kategóriák száma:</strong> {{ stats.categories }}</li>
+			<li><strong>Szavazatok száma:</strong> {{ stats.votes }}</li>
+			<li><strong>Adminok száma:</strong> {{ stats.admins }}</li>
+		</ul>
+	</div>
+</div>

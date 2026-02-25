@@ -5,7 +5,7 @@
 	<div class="reports-list">
 		<div *ngIf="loading" class="loading">Betöltés...</div>
 		<div *ngIf="!loading && reports.length === 0" class="no-reports">Nincs bejelentés.</div>
-		<div *ngFor="let report of reports" class="report-card">
+	<div *ngFor="let report of reports" class="report-card" (click)="goToDetails(report)">
 			<div class="vote-column">
 				<button class="vote-btn up" (click)="vote(report, 'up')">&#8679;</button>
 								<div class="vote-count">

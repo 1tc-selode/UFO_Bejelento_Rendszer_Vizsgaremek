@@ -1,1 +1,27 @@
-<p>statistics works!</p>
+<div class="statistics-container">
+	<h2>📊 Statisztika</h2>
+	<div *ngIf="loading" class="loading">Betöltés...</div>
+	<div *ngIf="error" class="error">{{ error }}</div>
+	<div *ngIf="!loading && !error">
+		<div class="stat-row">
+			<span class="stat-label">Összes bejelentés:</span>
+			<span class="stat-value">{{ totalReports }}</span>
+		</div>
+		<div class="stat-row">
+			<span class="stat-label">Leghitelesebb bejelentés:</span>
+			<span class="stat-value" *ngIf="mostCredible; else noCredible">
+				<b>{{ mostCredible.title }}</b>
+				<span *ngIf="mostCredible.user">({{ mostCredible.user.name }})</span>
+			</span>
+			<ng-template #noCredible>Nincs adat</ng-template>
+		</div>
+		<div class="stat-row">
+			<span class="stat-label">Leghihetetlenebb bejelentés:</span>
+			<span class="stat-value" *ngIf="mostIncredible; else noIncredible">
+				<b>{{ mostIncredible.title }}</b>
+				<span *ngIf="mostIncredible.user">({{ mostIncredible.user.name }})</span>
+			</span>
+			<ng-template #noIncredible>Nincs adat</ng-template>
+		</div>
+	</div>
+</div>

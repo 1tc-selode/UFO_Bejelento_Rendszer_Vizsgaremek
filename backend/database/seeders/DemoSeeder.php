@@ -82,43 +82,5 @@ class DemoSeeder extends Seeder
                 'user_id' => $rep['user_id']
             ], $rep);
         }
-
-        // Szavazatok
-        $report1 = Report::where('title', 'Furcsa fények az égen')->first();
-        $report2 = Report::where('title', 'Szellem a padláson')->first();
-        $report3 = Report::where('title', 'Villogó fény a mezőn')->first();
-
-        // Szavazatok: teszteljük a 1, 0, -1 állapotokat
-
-        // 1. report1: admin up, user down => 0
-        $vote1 = Vote::firstOrCreate([
-            'user_id' => $admin->id,
-            'report_id' => $report1->id,
-        ]);
-        $vote1->vote_type = 'up';
-        $vote1->save();
-
-        $vote2 = Vote::firstOrCreate([
-            'user_id' => $user->id,
-            'report_id' => $report1->id,
-        ]);
-        $vote2->vote_type = 'down';
-        $vote2->save();
-
-        // 2. report2: csak admin up => 1
-        $vote3 = Vote::firstOrCreate([
-            'user_id' => $admin->id,
-            'report_id' => $report2->id,
-        ]);
-        $vote3->vote_type = 'up';
-        $vote3->save();
-
-        // 3. report3: csak user down => -1
-        $vote4 = Vote::firstOrCreate([
-            'user_id' => $user->id,
-            'report_id' => $report3->id,
-        ]);
-        $vote4->vote_type = 'down';
-        $vote4->save();
     }
 }

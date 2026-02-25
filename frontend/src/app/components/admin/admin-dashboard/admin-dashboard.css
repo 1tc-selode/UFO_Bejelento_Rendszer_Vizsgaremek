@@ -1,0 +1,26 @@
+/* Admin dashboard summary styling */
+.admin-dashboard-container {
+	max-width: 500px;
+	margin: 2rem auto;
+	padding: 2rem;
+	background: #fff;
+	border-radius: 10px;
+	box-shadow: 0 2px 8px #0001;
+}
+.stats-list {
+	list-style: none;
+	padding: 0;
+}
+.stats-list li {
+	margin-bottom: 1rem;
+	font-size: 1.1rem;
+}
+.loading {
+	color: #888;
+	text-align: center;
+}
+.error {
+	color: #c00;
+	text-align: center;
+	margin: 1rem 0;
+}

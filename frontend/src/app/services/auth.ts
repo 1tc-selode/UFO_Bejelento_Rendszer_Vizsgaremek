@@ -53,4 +53,8 @@ export class AuthService {
   isAdmin(): Observable<boolean> {
     return this.getUser().pipe(map(user => user?.role === 'admin'));
   }
+  
+  updateProfile(data: Partial<User>): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/profile`, data);
+  }
 }

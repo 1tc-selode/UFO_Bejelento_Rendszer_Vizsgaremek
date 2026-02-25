@@ -1,1 +1,32 @@
-<p>profile works!</p>
+<div class="profile-container">
+	<h2>👤 Profil</h2>
+	<div *ngIf="loading" class="loading">Betöltés...</div>
+	<div *ngIf="!loading && user">
+		<div class="profile-section">
+			<h3>Saját adatok</h3>
+			<div *ngIf="!editMode">
+				<div><b>Név:</b> {{ user.name }}</div>
+				<div><b>Email:</b> {{ user.email }}</div>
+				<button class="btn" (click)="enableEdit()">Profil szerkesztése</button>
+			</div>
+			<form *ngIf="editMode" (ngSubmit)="saveProfile()" class="edit-form">
+				<label>Név: <input [(ngModel)]="editUser.name" name="name" required /></label>
+				<label>Email: <input [(ngModel)]="editUser.email" name="email" required /></label>
+				<label>Új jelszó: <input [(ngModel)]="editUser.password" name="password" type="password" /></label>
+				<button class="btn" type="submit">Mentés</button>
+				<button class="btn btn-cancel" type="button" (click)="editMode=false">Mégse</button>
+				<div class="save-msg">{{ saveMsg }}</div>
+			</form>
+		</div>
+		<div class="profile-section">
+			<h3>Saját bejelentések</h3>
+			<div *ngIf="reports.length === 0">Nincs saját bejelentésed.</div>
+			<ul *ngIf="reports.length > 0">
+				<li *ngFor="let r of reports">
+					<b>{{ r.title }}</b> ({{ r.date }}) - {{ r.status || 'függőben' }}
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div *ngIf="error" class="error">{{ error }}</div>
+</div>

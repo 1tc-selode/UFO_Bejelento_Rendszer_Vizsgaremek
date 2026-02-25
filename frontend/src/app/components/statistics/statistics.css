@@ -1,0 +1,31 @@
+
+.statistics-container {
+	max-width: 500px;
+	margin: 2rem auto;
+	padding: 2rem;
+	background: #fff;
+	border-radius: 10px;
+	box-shadow: 0 2px 8px #0001;
+}
+.stat-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 1rem 0;
+	font-size: 1.1rem;
+}
+.stat-label {
+	font-weight: 500;
+}
+.stat-value {
+	font-weight: 700;
+}
+.loading {
+	color: #888;
+	text-align: center;
+}
+.error {
+	color: #c00;
+	text-align: center;
+	margin: 1rem 0;
+}

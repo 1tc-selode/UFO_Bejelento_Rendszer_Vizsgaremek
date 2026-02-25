@@ -20,14 +20,42 @@ class VoteController extends Controller
         ]);
 
         // Egy felhasználó csak egyszer szavazhat egy bejelentésre
-        $vote = Vote::firstOrNew([
+        $vote = Vote::withTrashed()->where([
             'user_id' => $user->id,
             'report_id' => $report->id,
-        ]);
-        $vote->vote_type = $validated['vote_type'];
-        $vote->save();
+        ])->first();
 
-        return response()->json(['message' => 'Vote submitted successfully']);
+        if ($vote) {
+            if ($vote->trashed()) {
+                $vote->restore();
+            }
+            // Ha ugyanazt a szavazatot küldi újra, töröljük (visszavonás)
+            if ($vote->vote_type === $validated['vote_type']) {
+                $vote->delete();
+            } else {
+                // Másik típusra váltáskor töröljük a szavazatot (vissza 0-ra)
+                $vote->delete();
+            }
+        } else {
+            // Új szavazat
+            $vote = new Vote([
+                'user_id' => $user->id,
+                'report_id' => $report->id,
+                'vote_type' => $validated['vote_type'],
+            ]);
+            $vote->save();
+        }
+
+        // Szavazatok újraszámolása (csak aktív szavazatok)
+        $votes = $report->votes()->whereNull('deleted_at')->get();
+        $voteCount = $votes->reduce(function ($sum, $v) {
+            return $sum + ($v->vote_type === 'up' ? 1 : ($v->vote_type === 'down' ? -1 : 0));
+        }, 0);
+
+        return response()->json([
+            'message' => 'Vote submitted successfully',
+            'vote_count' => $voteCount,
+        ]);
     }
 
     // GET /api/reports/{id}/credibility - Hitelességi pontszám

@@ -1,0 +1,44 @@
+
+.report-details-container {
+	max-width: 600px;
+	margin: 2rem auto;
+	padding: 2rem;
+	background: #fff;
+	border-radius: 10px;
+	box-shadow: 0 2px 8px #0001;
+}
+.report-title {
+	font-size: 1.5rem;
+	font-weight: bold;
+	margin-bottom: 0.5rem;
+}
+.report-meta {
+	color: #666;
+	margin-bottom: 1rem;
+}
+.report-description {
+	margin-bottom: 1rem;
+}
+.report-coords, .report-status {
+	color: #888;
+	margin-bottom: 0.5rem;
+}
+.images {
+	display: flex;
+	gap: 1rem;
+	flex-wrap: wrap;
+}
+.images img {
+	max-width: 120px;
+	border-radius: 6px;
+	box-shadow: 0 1px 4px #0002;
+}
+.loading {
+	color: #888;
+	text-align: center;
+}
+.error {
+	color: #c00;
+	text-align: center;
+	margin: 1rem 0;
+}

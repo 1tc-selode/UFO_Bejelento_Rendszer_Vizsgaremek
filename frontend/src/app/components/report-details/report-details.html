@@ -1,1 +1,22 @@
-<p>report-details works!</p>
+<div class="report-details-container">
+	<h2>Bejelentés részletei</h2>
+	<div *ngIf="loading" class="loading">Betöltés...</div>
+	<div *ngIf="error" class="error">{{ error }}</div>
+	<div *ngIf="!loading && report">
+		<div class="report-title">{{ report.title }}</div>
+		<div class="report-meta">
+			<span>Kategória: {{ report.category?.name }}</span> |
+			<span>Dátum: {{ report.date | date:'yyyy.MM.dd' }}</span> |
+			<span>Felhasználó: {{ report.user?.name }}</span>
+		</div>
+		<div class="report-description">{{ report.description }}</div>
+		<div class="report-coords">Koordináták: {{ report.latitude }}, {{ report.longitude }}</div>
+		<div class="report-status">Állapot: {{ report.status || 'függőben' }}</div>
+		<div *ngIf="report.images?.length">
+			<h4>Képek:</h4>
+			<div class="images">
+				<img *ngFor="let img of report.images" [src]="img.image_path" alt="Bejelentés kép" />
+			</div>
+		</div>
+	</div>
+</div>

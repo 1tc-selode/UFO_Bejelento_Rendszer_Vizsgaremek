@@ -44,11 +44,34 @@ class AdminController extends Controller
         $totalUsers = \App\Models\User::count();
         $approvedReports = \App\Models\Report::where('status', 'approved')->count();
         $bannedUsers = \App\Models\User::where('role', 'banned')->count();
+
+        // Leghitelesebb bejelentés (legtöbb pozitív szavazat - negatív szavazat)
+        $reports = \App\Models\Report::with('votes')->get();
+        $mostCredible = null;
+        $mostIncredible = null;
+        $maxScore = null;
+        $minScore = null;
+        foreach ($reports as $report) {
+            $score = $report->votes->reduce(function ($sum, $v) {
+                return $sum + ($v->vote_type === 'up' ? 1 : ($v->vote_type === 'down' ? -1 : 0));
+            }, 0);
+            if ($maxScore === null || $score > $maxScore) {
+                $maxScore = $score;
+                $mostCredible = $report;
+            }
+            if ($minScore === null || $score < $minScore) {
+                $minScore = $score;
+                $mostIncredible = $report;
+            }
+        }
+
         return response()->json([
             'total_reports' => $totalReports,
             'total_users' => $totalUsers,
             'approved_reports' => $approvedReports,
             'banned_users' => $bannedUsers,
+            'most_credible_report' => $mostCredible,
+            'most_incredible_report' => $mostIncredible,
         ]);
     }
 }
