@@ -18,6 +18,7 @@ return new class extends Migration
             $table->enum('vote_type', ['up', 'down']);
             $table->timestamps();
             $table->softDeletes();
+            $table->unique(['user_id', 'report_id']);
         });
     }
 

@@ -14,7 +14,7 @@ class ReportController extends Controller
     // GET /api/reports - Összes bejelentés listázása (szűrés, rendezés)
     public function index(Request $request)
     {
-        $query = Report::with(['user', 'category', 'images']);
+    $query = Report::with(['user', 'category', 'images', 'votes']);
 
         // Szűrés például státuszra
         if ($request->has('status')) {
