@@ -44,6 +44,94 @@
           "path": ["api", "login"]
         }
       }
+    },
+    {
+      "name": "Összes UFO",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Accept", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "http://localhost:8000/api/ufos",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "ufos"]
+        }
+      }
+    },
+    {
+      "name": "UFO létrehozása",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Új UFO\",\n  \"description\": \"Ez egy újonnan létrehozott UFO.\",\n  \"type\": \"tipus1\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/ufos",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "ufos"]
+        }
+      }
+    },
+    {
+      "name": "UFO részletei",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Accept", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "http://localhost:8000/api/ufos/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "ufos", "1"]
+        }
+      }
+    },
+    {
+      "name": "UFO frissítése",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Frissített UFO\",\n  \"description\": \"Ez egy frissített leírás.\",\n  \"type\": \"tipus2\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/ufos/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "ufos", "1"]
+        }
+      }
+    },
+    {
+      "name": "UFO törlése",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          { "key": "Accept", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "http://localhost:8000/api/ufos/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "ufos", "1"]
+        }
+      }
     }
   ]
 }
