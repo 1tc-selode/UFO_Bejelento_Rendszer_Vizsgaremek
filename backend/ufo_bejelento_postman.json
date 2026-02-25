@@ -1,0 +1,49 @@
+{
+  "info": {
+    "_postman_id": "b1e1e1e1-1111-2222-3333-444444444444",
+    "name": "UFO Bejelento Rendszer API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Regisztráció",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Teszt Felhasznalo\",\n  \"email\": \"teszt@example.com\",\n  \"password\": \"jelszo123\",\n  \"password_confirmation\": \"jelszo123\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/register",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "register"]
+        }
+      }
+    },
+    {
+      "name": "Bejelentkezés",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"teszt@example.com\",\n  \"password\": \"jelszo123\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/login",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "login"]
+        }
+      }
+    }
+  ]
+}
