@@ -1,0 +1,45 @@
+<div class="report-form-container">
+	<h2>{{ isEdit ? 'Bejelentés szerkesztése' : 'Új bejelentés' }}</h2>
+	<form (ngSubmit)="submit()" *ngIf="!loading; else loadingTpl" autocomplete="off">
+		<div class="form-group">
+			<label for="title">Cím <span class="hint">(max. 100 karakter, pl. "Fényes tárgy az égen")</span></label>
+			<input id="title" name="title" [(ngModel)]="report.title" required maxlength="100" placeholder="Fényes tárgy az égen" />
+		</div>
+		<div class="form-group">
+			<label for="description">Leírás <span class="hint">(pl. "Zöld fény mozgott gyorsan az égen.")</span></label>
+			<textarea id="description" name="description" [(ngModel)]="report.description" required rows="4" placeholder="Zöld fény mozgott gyorsan az égen."></textarea>
+		</div>
+		<div class="form-group">
+			<label for="category">Kategória <span class="hint">(pl. "Fényjelenség")</span></label>
+			<select id="category" name="category_id" [(ngModel)]="report.category_id" required>
+				<option [ngValue]="undefined">Válassz kategóriát</option>
+				<option *ngFor="let cat of categories" [ngValue]="cat.id">{{ cat.name }}</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="date">Dátum <span class="hint">(pl. "2026-02-25")</span></label>
+			<input id="date" name="date" type="date" [(ngModel)]="report.date" required placeholder="2026-02-25" />
+		</div>
+		<div class="form-group">
+			<label for="witnesses">Tanúk száma <span class="hint">(min. 1, pl. "3")</span></label>
+			<input id="witnesses" name="witnesses" type="number" min="1" [(ngModel)]="report.witnesses" required placeholder="3" />
+		</div>
+		<div class="form-group">
+			<label for="latitude">Szélesség (lat) <span class="hint">(-90 és 90 között, pl. "47.4979")</span></label>
+			<input id="latitude" name="latitude" type="number" step="any" min="-90" max="90" [(ngModel)]="report.latitude" required placeholder="47.4979" />
+		</div>
+		<div class="form-group">
+			<label for="longitude">Hosszúság (lng) <span class="hint">(-180 és 180 között, pl. "19.0402")</span></label>
+			<input id="longitude" name="longitude" type="number" step="any" min="-180" max="180" [(ngModel)]="report.longitude" required placeholder="19.0402" />
+		</div>
+		<div class="form-group">
+			<label for="image">Kép feltöltése <span class="hint">(opcionális, csak képfájl)</span></label>
+			<input id="image" name="image" type="file" (change)="onFileChange($event)" accept="image/*" />
+		</div>
+		<div *ngIf="error" class="error">{{ error }}</div>
+		<button class="btn submit-btn" type="submit">{{ isEdit ? 'Mentés' : 'Létrehozás' }}</button>
+	</form>
+	<ng-template #loadingTpl>
+		<div class="loading">Betöltés...</div>
+	</ng-template>
+</div>

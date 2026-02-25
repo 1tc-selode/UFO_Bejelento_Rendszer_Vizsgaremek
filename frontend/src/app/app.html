@@ -1,0 +1,38 @@
+<nav class="navbar">
+  <div class="navbar-left">
+    <span class="site-title">UFO / Paranormális Jelentő Rendszer</span>
+  </div>
+  <div class="navbar-center">
+    <a href="#" (click)="navigate('/', $event)">Főoldal</a>
+    <a href="#" (click)="navigate('/statistics', $event)">Statisztikák</a>
+    <a *ngIf="isLoggedIn" href="#" (click)="navigate('/profile', $event)">Profil</a>
+    <div *ngIf="isAdmin" class="dropdown">
+      <a class="dropbtn" href="#" tabindex="0">Admin</a>
+      <div class="dropdown-content">
+        <a href="#" (click)="navigate('/admin', $event)">Dashboard</a>
+        <a href="#" (click)="navigate('/admin/categories', $event)">Kategóriák</a>
+        <a href="#" (click)="navigate('/admin/reports', $event)">Bejelentések</a>
+      </div>
+    </div>
+  </div>
+  <div class="navbar-right">
+    <ng-container *ngIf="!isLoggedIn; else loggedInBlock">
+  <button class="btn" type="button" (click)="navigate('/login')">Bejelentkezés</button>
+  <button class="btn" type="button" (click)="navigate('/register')">Regisztráció</button>
+    </ng-container>
+    <ng-template #loggedInBlock>
+      <div class="user-info">
+        <span>{{ user?.name }}</span>
+        <button (click)="logout()" class="btn logout" type="button">Kijelentkezés</button>
+      </div>
+    </ng-template>
+  </div>
+</nav>
+
+<main>
+  <router-outlet></router-outlet>
+</main>
+
+<footer class="footer">
+  <span>&copy; 2026 UFO / Paranormális Jelentő Rendszer &mdash; Minden jog fenntartva.</span>
+</footer>

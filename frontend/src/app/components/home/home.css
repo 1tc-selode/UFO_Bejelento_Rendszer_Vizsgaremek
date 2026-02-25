@@ -1,0 +1,91 @@
+/* Home container */
+.home-container {
+	max-width: 600px;
+	margin: 2rem auto;
+	padding: 1rem;
+}
+
+.home-header {
+	display: flex;
+	justify-content: flex-end;
+	margin-bottom: 1.5rem;
+}
+
+.create-btn {
+	background: #232946;
+	color: #fff;
+	font-weight: 600;
+	border: none;
+	border-radius: 4px;
+	padding: 0.5rem 1.2rem;
+	cursor: pointer;
+	transition: background 0.2s;
+}
+.create-btn:hover {
+	background: #eebbc3;
+	color: #232946;
+}
+
+.reports-list {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+.report-card {
+	display: flex;
+	align-items: flex-start;
+	background: #fff;
+	border-radius: 8px;
+	box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+	padding: 1rem 1.5rem;
+	gap: 1.5rem;
+}
+
+.vote-column {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.3rem;
+}
+
+.vote-btn {
+	background: none;
+	border: none;
+	font-size: 1.5rem;
+	cursor: pointer;
+	color: #232946;
+	transition: color 0.2s;
+}
+.vote-btn.up:hover {
+	color: #4caf50;
+}
+.vote-btn.down:hover {
+	color: #f44336;
+}
+.vote-count {
+	font-weight: bold;
+	font-size: 1.1rem;
+}
+
+.report-content {
+	flex: 1;
+}
+.report-title {
+	font-size: 1.2rem;
+	font-weight: 600;
+	margin-bottom: 0.3rem;
+}
+.report-meta {
+	font-size: 0.95rem;
+	color: #888;
+	margin-bottom: 0.5rem;
+}
+.report-description {
+	font-size: 1.05rem;
+}
+.loading, .no-reports {
+	text-align: center;
+	color: #888;
+	margin: 2rem 0;
+}

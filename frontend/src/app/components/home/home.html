@@ -1,0 +1,27 @@
+<div class="home-container">
+	<div class="home-header">
+		<button *ngIf="isLoggedIn" class="btn create-btn" (click)="createReport()">Új bejelentés</button>
+	</div>
+	<div class="reports-list">
+		<div *ngIf="loading" class="loading">Betöltés...</div>
+		<div *ngIf="!loading && reports.length === 0" class="no-reports">Nincs bejelentés.</div>
+		<div *ngFor="let report of reports" class="report-card">
+			<div class="vote-column">
+				<button class="vote-btn up" (click)="vote(report, 'up')">&#8679;</button>
+								<div class="vote-count">
+									{{ getVoteCount(report) }}
+								</div>
+				<button class="vote-btn down" (click)="vote(report, 'down')">&#8681;</button>
+			</div>
+			<div class="report-content">
+				<div class="report-title">{{ report.title }}</div>
+				<div class="report-meta">
+					  <span>Kategória: {{ getCategoryName(report) }}</span> |
+					<span>Dátum: {{ report.date | date:'yyyy.MM.dd' }}</span> |
+					<span>Felhasználó: {{ report.user?.name }}</span>
+				</div>
+				<div class="report-description">{{ report.description }}</div>
+			</div>
+		</div>
+	</div>
+</div>
